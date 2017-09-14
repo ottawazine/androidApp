@@ -90,10 +90,10 @@ public class MyFragment extends Fragment {
             keyValuePair.put("Text", "测试数据" + i);
             data.add(keyValuePair);
         }
-
+//
         SimpleAdapter simpleAdapter = new SimpleAdapter(this.getActivity(), data,
                 R.layout.custom_list,new String[] { "Text" },
-                new int[] { R.id.text });
+                new int[] { R.id.textview1 });
 
         return simpleAdapter;
     }

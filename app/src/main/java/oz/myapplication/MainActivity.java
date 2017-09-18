@@ -21,12 +21,14 @@ import android.support.v7.widget.Toolbar;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ImageSpan;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import java.util.ArrayList;
 
 import oz.myapplication.fragment.MyFragment;
+import oz.myapplication.function.data_controller;
 import oz.myapplication.view.SlidingTabLayout;
 
 
@@ -41,6 +43,10 @@ public class MainActivity extends AppCompatActivity
             R.mipmap.icon_4,
             R.mipmap.icon_5
     };
+
+    private static final String at="LogDemo";
+
+
 
 
     //-----------------------------------------------------------------------------------------
@@ -96,6 +102,27 @@ public class MainActivity extends AppCompatActivity
 
         mSlidingTabLayout.setViewPager(viewPager);
 
+        data_controller dc = new data_controller();
+
+
+
+
+
+//        new Thread(
+//                new Runnable(){
+//
+//                    @Override
+//                    public void run() {
+//                        data_controller dc = new data_controller();
+//
+//                        try {
+//                            Log.i(MainActivity.at,"ttttttttttttttttttttt");
+//                            dc.getJsonObject("http://ottawazine.com/?json=Ottawazine");
+//                        } catch (Exception e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                }).start();
 
 
     }

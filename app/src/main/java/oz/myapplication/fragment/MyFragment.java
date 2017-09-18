@@ -6,6 +6,7 @@ package oz.myapplication.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +18,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import oz.myapplication.MainActivity;
+import oz.myapplication.NewsData;
 import oz.myapplication.R;
+import oz.myapplication.function.data_controller;
 
 public class MyFragment extends Fragment {
 
@@ -29,15 +33,23 @@ public class MyFragment extends Fragment {
     public ListView listView4;
     public ListView listView5;
 
+    private ArrayList<NewsData> testData;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Bundle b = this.getArguments();
         name = b.getString("NAME");
+
+
+
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+
         View view = inflater.inflate(R.layout.activity_jia_guo, null);
         if(name == "tab01"){
             view = inflater.inflate(R.layout.activity_jia_guo, null);
@@ -84,10 +96,38 @@ public class MyFragment extends Fragment {
     }
 
     public SimpleAdapter getAdapter(){
-        List<Map<String,?>> data = new ArrayList<Map<String,?>>();
-        for (int i = 0; i < 15; i++) {
+
+
+//        testData = new ArrayList<>();
+//
+//        new Thread(
+//                new Runnable(){
+//
+//                    @Override
+//                    public void run() {
+//
+//                        data_controller dc = new data_controller();
+//                        try {
+//
+//                            dc.getJsonObject("http://ottawazine.com/?json=Ottawazine");
+//                            testData = dc.getData();
+//                            Log.i("TAG","ttttttttttttttttttttt   "+testData.size());
+//                        } catch (Exception e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                }).start();
+//
+//
+//        String data1 = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+//        Log.i("TAG","ttttttttttttttttttttt222222   "+testData.size());
+
+
+        List<Map<String,?>> data = new ArrayList<>();
+
+        for(int i=0; i< 20; i++){
             Map<String, String> keyValuePair = new HashMap<String, String>();
-            keyValuePair.put("Text", "测试数据" + i);
+            keyValuePair.put("Text", "");
             data.add(keyValuePair);
         }
 //

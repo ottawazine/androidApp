@@ -4,20 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="oz.myapplication.BiDuActivity">
-
+    android:background="@mipmap/bg2"
+    tools:context="oz.myapplication.bbsPostListActivity">
 
     <ListView
-        android:id="@+id/list_view_bi_du"
-        android:layout_width="368dp"
-        android:layout_height="495dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
+        android:id="@+id/bbsListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:dividerHeight="10px"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        />
 </android.support.constraint.ConstraintLayout>

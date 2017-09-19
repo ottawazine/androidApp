@@ -7,7 +7,9 @@ import android.graphics.Matrix;
 import android.graphics.PixelFormat;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -21,7 +23,6 @@ import android.support.v7.widget.Toolbar;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ImageSpan;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -44,12 +45,9 @@ public class MainActivity extends AppCompatActivity
             R.mipmap.icon_5
     };
 
-    private static final String at="LogDemo";
-
-
-
 
     //-----------------------------------------------------------------------------------------
+    @RequiresApi(api = Build.VERSION_CODES.GINGERBREAD)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -104,26 +102,20 @@ public class MainActivity extends AppCompatActivity
 
         data_controller dc = new data_controller();
 
+        new Thread(
+                new Runnable(){
 
+                    @Override
+                    public void run() {
+                        data_controller dc = new data_controller();
 
-
-
-//        new Thread(
-//                new Runnable(){
-//
-//                    @Override
-//                    public void run() {
-//                        data_controller dc = new data_controller();
-//
-//                        try {
-//                            Log.i(MainActivity.at,"ttttttttttttttttttttt");
-//                            dc.getJsonObject("http://ottawazine.com/?json=Ottawazine");
-//                        } catch (Exception e) {
-//                            e.printStackTrace();
-//                        }
-//                    }
-//                }).start();
-
+                        try {
+                            dc.getJsonObject("http://ottawazine.com/?json=Ottawazine");
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
 
     }
 
@@ -155,6 +147,7 @@ public class MainActivity extends AppCompatActivity
         }
 
         // tab标题
+        @RequiresApi(api = Build.VERSION_CODES.CUPCAKE)
         @Override
         public CharSequence getPageTitle(int position) {
             Drawable image = getResources().getDrawable(imageResId[position]);
@@ -205,6 +198,7 @@ public class MainActivity extends AppCompatActivity
 
     //-------------------------------------------------------------------
 
+    @RequiresApi(api = Build.VERSION_CODES.GINGERBREAD)
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -237,6 +231,7 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.GINGERBREAD)
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {

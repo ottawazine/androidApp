@@ -3,18 +3,18 @@ package oz.myapplication.function;
 /**
  * Created by xianchizou on 2017-09-14.
  */
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.io.*;
-import java.util.ArrayList;
+import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import android.util.Log;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
 
 import oz.myapplication.NewsData;
 
@@ -31,9 +31,10 @@ public class data_controller {
 
 
     public void getJsonObject(String link){
+
         try {
 
-            Log.i(data_controller.at,"ttttttttttttttttttttt");
+//            Log.i(data_controller.at,"ttttttttttttttttttttt");
             String data="";
             URL url = new URL(link);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -43,7 +44,7 @@ public class data_controller {
             connection.connect();
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             data = bufferedReader.readLine();
-            Log.i("TAG", "-------------------dddd-------     "+data);
+//            Log.i("TAG", "-------------------dddd-------     "+data);
 
             JsonJX(data);
 
@@ -66,7 +67,7 @@ public class data_controller {
             jsonArray = jsObj.getJSONArray("posts");
 
 
-            Log.i("TAG", "------2--------"+jsonArray);
+//            Log.i("TAG", "------2--------"+jsonArray);
             for(int i=0; i<jsonArray.length();i++){
                 JSONObject temp = jsonArray.getJSONObject(i);
                 int id = temp.getInt("id");
@@ -79,15 +80,15 @@ public class data_controller {
                 for(int j=0; j<cateArray.length(); j++){
                     categories.add(j,cateArray.getString(j));
                 }
-                //Log.i("TAG", "------xxxxxxxxxxxxx--------"+title);
+//                Log.i("TAG", "------xxxxxxxxxxxxx--------"+title);
 
                 NewsData newsData = new NewsData(id,title,url,date,modified,categories);
 
-                //Log.i("TAG", "---------yyyyyyyy--------"+newsData.getUrl());
+//                Log.i("TAG", "---------yyyyyyyy--------"+newsData.getUrl());
 
                 this.data.add(newsData);
 
-                //Log.i("TAG", "--------dddddd-------:   "+this.data.size());
+//                Log.i("TAG", "--------dddddd-------:   "+this.data.size());
 
             }
 
@@ -100,6 +101,8 @@ public class data_controller {
     public ArrayList<NewsData> getData(){
         return data;
     }
+
+    public int getSize(){return data.size();}
 
 
 }

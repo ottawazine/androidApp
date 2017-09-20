@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +18,6 @@ import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -25,22 +25,21 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import oz.myapplication.NewsData;
 import oz.myapplication.R;
 import oz.myapplication.bbsPostListActivity;
-import oz.myapplication.function.data_controller;
+import oz.myapplication.function.PostRunnable;
 
 public class MyFragment extends Fragment {
-    private String TAG = "XXXXXXXXXXXXXX";
     private String name;
 
+    private Handler handler=null;
     public ListView listView1;
     public ListView listView2;
     public ListView listView3;
     public ListView listView4;
     public ExpandableListView expandableListView1;
+    public List<Map<String,?>> data;
 
-    private ArrayList<NewsData> testData;
     //--------------
     ExpandableListAdapter expandableListAdapter;
     List<String> expandableListTitle;
@@ -51,6 +50,8 @@ public class MyFragment extends Fragment {
         super.onCreate(savedInstanceState);
         Bundle b = this.getArguments();
         name = b.getString("NAME");
+
+        handler=new Handler();
     }
 
     @Override
@@ -60,26 +61,32 @@ public class MyFragment extends Fragment {
             view = inflater.inflate(R.layout.activity_jia_guo, null);
             listView1 = (ListView) view.findViewById(R.id.list_view_jia_guo);
 
-            listView1.setAdapter(getAdapter());
+            PostRunnable pR = new PostRunnable(this.getActivity(),listView1);
+            new Thread(pR).start();
+
+
         }
         if(name == "tab02"){
             view = inflater.inflate(R.layout.activity_zhong_guo, null);
             listView2 = (ListView) view.findViewById(R.id.list_view_zhong_guo);;
 
-            listView2.setAdapter(getAdapter());
+            PostRunnable pR = new PostRunnable(this.getActivity(),listView2);
+            new Thread(pR).start();
 
         }
         if(name == "tab03"){
             view = inflater.inflate(R.layout.activity_bi_du, null);
             listView3 = (ListView) view.findViewById(R.id.list_view_bi_du);
 
-            listView3.setAdapter(getAdapter());
+            PostRunnable pR = new PostRunnable(this.getActivity(),listView3);
+            new Thread(pR).start();
         }
         if(name == "tab04"){
             view = inflater.inflate(R.layout.activity_chi_wan, null);
             listView4 = (ListView) view.findViewById(R.id.list_view_chi_wan);
 
-            listView4.setAdapter(getAdapter());
+            PostRunnable pR = new PostRunnable(this.getActivity(),listView4);
+            new Thread(pR).start();
         }
         if(name == "tab05"){
             view = inflater.inflate(R.layout.activity_bbs, null);
@@ -140,47 +147,6 @@ public class MyFragment extends Fragment {
 
     }
 
-    public SimpleAdapter getAdapter(){
-
-
-        testData = new ArrayList<>();
-
-        new Thread(
-                new Runnable(){
-
-                    @Override
-                    public void run() {
-
-                        data_controller dc = new data_controller();
-                        try {
-
-                            dc.getJsonObject("http://ottawazine.com/?json=Ottawazine");
-                            testData = dc.getData();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }).start();
-
-
-        String data1 = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
-
-
-        List<Map<String,?>> data = new ArrayList<>();
-
-        for(int i=0; i< 20; i++){
-            Map<String, String> keyValuePair = new HashMap<String, String>();
-            keyValuePair.put("Text", "测试数据" + i);
-            keyValuePair.put("Text", "");
-            data.add(keyValuePair);
-        }
-
-        SimpleAdapter simpleAdapter = new SimpleAdapter(this.getActivity(), data,
-                R.layout.custom_list,new String[] { "Text" },
-                new int[] { R.id.textview1 });
-
-        return simpleAdapter;
-    }
 
     //---------------CustomExpandableListAdapter----------------------------
     public class CustomExpandableListAdapter extends BaseExpandableListAdapter {

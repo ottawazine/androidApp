@@ -26,7 +26,7 @@ public class data_controller {
     private static final String at="data_controller";
 
     public data_controller(){
-        data = new ArrayList<>();
+        this.data = new ArrayList<>();
     }
 
 

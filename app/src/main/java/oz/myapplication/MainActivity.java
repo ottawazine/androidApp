@@ -37,11 +37,11 @@ public class MainActivity extends AppCompatActivity
     //--------------------tab相关-------------------------------
     ArrayList<Fragment> tablist;
     private int[] imageResId = {
-            R.mipmap.icon_1,
-            R.mipmap.icon_2,
-            R.mipmap.icon_3,
-            R.mipmap.icon_4,
-            R.mipmap.icon_5
+            R.mipmap.icon_1_line,
+            R.mipmap.icon_2_line,
+            R.mipmap.icon_3_line,
+            R.mipmap.icon_4_line,
+            R.mipmap.icon_5_line
     };
 
 
@@ -55,7 +55,9 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
         setSupportActionBar(toolbar);
+
 
 //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {
@@ -69,7 +71,8 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
+//        drawer.setDrawerListener(toggle);
+
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -195,8 +198,8 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
+
+        return false;
     }
 
     @Override

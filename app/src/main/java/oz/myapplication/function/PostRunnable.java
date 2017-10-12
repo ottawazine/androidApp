@@ -39,7 +39,7 @@ public class PostRunnable implements Runnable {
 
         for(int i=0; i< 20; i++){
             Map<String, String> keyValuePair = new HashMap<String, String>();
-            Log.i("TAG", "--------DC   Load-------:   "+dc.getData().size());
+            //Log.i("TAG", "--------DC   Load-------:   "+dc.getData().size());
             keyValuePair.put("Text", dc.getData().get(i).getTitle());
             data.add(keyValuePair);
         }
